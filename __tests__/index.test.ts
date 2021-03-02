@@ -1,8 +1,14 @@
-/* eslint-disable no-magic-numbers */
-import {add} from '../src';
+import {renderHook} from '@testing-library/react-hooks';
+import useUnmountRef from '../src';
 
-describe('add', () => {
+describe('useUnmountRef', () => {
   it('should add number', () => {
-    expect(add(1, 2)).toBe(3);
+    const {result, unmount} = renderHook(() => useUnmountRef());
+
+    expect(result.current.current).toBe(false);
+
+    unmount();
+
+    expect(result.current.current).toBe(true);
   });
 });

@@ -1,12 +1,12 @@
-# TypeScript Package Template
+# useUnmountRef
 
-[![npm version](https://badge.fury.io/js/%40technote-space%2Fts-package-template.svg)](https://badge.fury.io/js/%40technote-space%2Fts-package-template)
-[![CI Status](https://github.com/technote-space/ts-package-template/workflows/CI/badge.svg)](https://github.com/technote-space/ts-package-template/actions)
-[![codecov](https://codecov.io/gh/technote-space/ts-package-template/branch/master/graph/badge.svg)](https://codecov.io/gh/technote-space/ts-package-template)
-[![CodeFactor](https://www.codefactor.io/repository/github/technote-space/ts-package-template/badge)](https://www.codefactor.io/repository/github/technote-space/ts-package-template)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/technote-space/ts-package-template/blob/master/LICENSE)
+[![npm version](https://badge.fury.io/js/%40technote-space%2Fuse-unmount-ref.svg)](https://badge.fury.io/js/%40technote-space%2Fuse-unmount-ref)
+[![CI Status](https://github.com/technote-space/use-unmount-ref/workflows/CI/badge.svg)](https://github.com/technote-space/use-unmount-ref/actions)
+[![codecov](https://codecov.io/gh/technote-space/use-unmount-ref/branch/master/graph/badge.svg)](https://codecov.io/gh/technote-space/use-unmount-ref)
+[![CodeFactor](https://www.codefactor.io/repository/github/technote-space/use-unmount-ref/badge)](https://www.codefactor.io/repository/github/technote-space/use-unmount-ref)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/technote-space/use-unmount-ref/blob/master/LICENSE)
 
-Template for npm package.
+React hook to handle unmount ref.
 
 ## Table of Contents
 
@@ -15,19 +15,48 @@ Template for npm package.
 <details>
 <summary>Details</summary>
 
-- [Setup](#setup)
-  - [yarn](#yarn)
-  - [npm](#npm)
+- [Usage](#usage)
+  - [Install](#install)
+  - [Use](#use)
 - [Author](#author)
 
 </details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Setup
-### yarn
-- `yarn setup`
-### npm
-- `npm run setup`
+## Usage
+### Install
+`yarn add @technote-space/use-unmount-ref`
+
+or
+
+`npm i @technote-space/use-unmount-ref`
+
+### Use
+
+e.g.
+```tsx
+import type { FC } from 'react';
+import { useEffect, useState } from 'react';
+import useUnmountRef from '@technote-space/use-unmount-ref';
+
+const TestPage: FC = () => {
+  const unmountRef = useUnmountRef();
+  const [isLoading, setIsLoading] = useState(false);
+  
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      if(!unmountRef.current) {
+        setIsLoading(false);
+      }
+    }, 1000);
+  }, []);
+  
+  return <div>
+    {isLoading ? 'Loading...' : 'Not loading.'}
+  </div>
+};
+```
 
 ## Author
 [GitHub (Technote)](https://github.com/technote-space)  
