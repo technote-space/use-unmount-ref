@@ -1,1 +1,17 @@
-export const add = (num1: number, num2: number): number => num1 + num2;
+import type {MutableRefObject} from 'react';
+import {useRef, useEffect} from 'react';
+
+const useUnmountRef = (): MutableRefObject<boolean> => {
+  const unmountRef = useRef(false);
+
+  useEffect(
+    () => () => {
+      unmountRef.current = true;
+    },
+    [],
+  );
+
+  return unmountRef;
+};
+
+export default useUnmountRef;
