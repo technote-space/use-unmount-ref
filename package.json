@@ -1,6 +1,6 @@
 {
   "name": "@technote-space/use-unmount-ref",
-  "version": "0.0.36",
+  "version": "0.1.0",
   "description": "React hook to handle unmount ref.",
   "keywords": [
     "github",
