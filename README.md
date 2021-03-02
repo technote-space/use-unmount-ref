@@ -23,11 +23,40 @@ React hook to handle unmount ref.
 </details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Setup
-### yarn
-- `yarn setup`
-### npm
-- `npm run setup`
+## Usage
+### Install
+`yarn add @technote-space/use-unmount-ref`
+
+or
+
+`npm i @technote-space/use-unmount-ref`
+
+### Use
+
+e.g.
+```tsx
+import type { FC } from 'react';
+import { useEffect, useState } from 'react';
+import useUnmountRef from '@technote-space/use-unmount-ref';
+
+const TestPage: FC = () => {
+  const unmountRef = useUnmountRef();
+  const [isLoading, setIsLoading] = useState(false);
+  
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      if(!unmountRef.current) {
+        setIsLoading(false);
+      }
+    }, 1000);
+  }, []);
+  
+  return <div>
+    {isLoading ? 'Loading...' : 'Not loading.'}
+  </div>
+};
+```
 
 ## Author
 [GitHub (Technote)](https://github.com/technote-space)  
